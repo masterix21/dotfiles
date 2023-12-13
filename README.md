@@ -27,8 +27,14 @@ Be careful when using these dotfiles because they change a lot of MacOS settings
 	- Xcode
 	- Alfred
 	- Visual Studio Code
+   	- Grammarly
+   	- Ray
 	- PhpStorm
 	- TablePlus
+   	- Tinkerwell
+   	- Transmit
+   	- VLC
+   	- Helo
 - Custom Settings:
 	- PhpStorm: enable repository sync 
 
