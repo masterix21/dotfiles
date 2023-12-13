@@ -1,0 +1,45 @@
+#-----------------------------------------------------------------------------------#
+#	PHP, Laravel, etc
+#-----------------------------------------------------------------------------------#
+alias ct="composer test"
+alias ctc="composer test-coverage"
+alias pu="./vendor/bin/phpunit"
+alias pest="./vendor/bin/pest"
+alias a="php artisan"
+alias vapor="php $HOME/.composer/vendor/bin/vapor"
+alias sail="./vendor/bin/sail"
+alias pint="./vendor/bin/pint"
+
+#-----------------------------------------------------------------------------------#
+#	Editor
+#-----------------------------------------------------------------------------------#
+alias pstorm="open -na \"PhpStorm.app\" --args \"$@\""
+alias code="open -na \"Visual Studio Code\" --args \"$@\""
+alias create="touch \"$@\" && open \"$@\""
+
+#-----------------------------------------------------------------------------------#
+#	Git
+#-----------------------------------------------------------------------------------#
+alias ungit="git rm -r --cached"
+
+#-----------------------------------------------------------------------------------#
+#	Android, iOS and Flutter
+#-----------------------------------------------------------------------------------#
+alias android-screenshot='adb exec-out screencap -p > screen-$(date +%Y%m%d%H%M%S).png'
+alias flutter-build-ios="dart run build_runner build --delete-conflicting-outputs && version=\$(grep 'version:' ./pubspec.yaml | awk '{print \$2}'); flutter build ipa --obfuscate --split-debug-info=\"debug-info/ios/\$version\""
+alias flutter-build-android="dart run build_runner build --delete-conflicting-outputs && version=\$(grep 'version:' ./pubspec.yaml | awk '{print \$2}'); flutter build appbundle --obfuscate --split-debug-info=\"debug-info/android/\$version\""
+
+#-----------------------------------------------------------------------------------#
+#	Hosts and networks
+#-----------------------------------------------------------------------------------#
+alias hosts='sudo code /etc/hosts'
+alias ip_intern="ipconfig getifaddr en0"
+alias ip_extern="curl ipecho.net/plain; echo"
+alias whois="whois -h whois-servers.net"
+
+#-----------------------------------------------------------------------------------#
+#	Search, List and bash generics
+#-----------------------------------------------------------------------------------#
+alias l="ls -laF"
+alias la="ls -la ${colorflag}"
+alias lsd='ls -l | grep "^d"'
