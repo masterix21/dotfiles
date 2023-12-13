@@ -59,6 +59,7 @@ cask 'android-sdk'
 cask 'flutter'
 cask 'spotify'
 cask 'kaleidoscope'
+cask 'adobe-creative-cloud'
 
 # Quicklook
 cask 'qlcolorcode'
