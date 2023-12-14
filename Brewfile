@@ -61,6 +61,7 @@ cask 'spotify'
 cask 'kaleidoscope'
 cask 'adobe-creative-cloud'
 cask 'whatsapp'
+cask 'telegram'
 
 # Quicklook
 cask 'qlcolorcode'
