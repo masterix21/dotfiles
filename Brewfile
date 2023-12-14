@@ -60,6 +60,7 @@ cask 'flutter'
 cask 'spotify'
 cask 'kaleidoscope'
 cask 'adobe-creative-cloud'
+cask 'whatsapp'
 
 # Quicklook
 cask 'qlcolorcode'
