@@ -31,6 +31,7 @@ brew 'node'
 brew 'redis'
 brew 'yarn'
 brew 'bun'
+brew 'cocoapods'
 
 # Apps
 cask 'alfred'
