@@ -4,7 +4,7 @@ export DOTFILES=$HOME/.dotfiles
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
 
 CASE_SENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
