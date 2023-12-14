@@ -43,3 +43,6 @@ alias whois="whois -h whois-servers.net"
 alias l="ls -laF"
 alias la="ls -la ${colorflag}"
 alias lsd='ls -l | grep "^d"'
+alias sites='cd ~/Dev/Sites'
+alias mobile='cd ~/Dev/Mobile'
+alias packages='cd ~/Dev/Packages'
