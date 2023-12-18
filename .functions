@@ -1,0 +1,25 @@
+#-----------------------------------------------------------------------------------#
+#       MySQL and databases
+#-----------------------------------------------------------------------------------#
+
+mycreate() {
+    if [ "$1" != "" ]
+    then
+        mysql -u root -e "create database $1"
+    else
+        print "Database name required, ex.: $0 <database>"
+    fi
+}
+
+mylist() {
+    mysql -u root -e "show databases"
+}
+
+mydrop() {
+    if [ "$1" != "" ]
+    then
+        mysql -u root -e "drop database $1"
+    else
+        print "Database name required, ex.: $0 <database>"
+    fi
+}

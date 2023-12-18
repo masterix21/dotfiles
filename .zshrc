@@ -43,3 +43,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 source "$DOTFILES/.aliases"
+source "$DOTFILES/.functions"
+
+# bun completions
+[ -s "/Users/luca/.bun/_bun" ] && source "/Users/luca/.bun/_bun"
