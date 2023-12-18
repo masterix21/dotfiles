@@ -19,6 +19,8 @@ fi
 rm -rf $HOME/.zshrc
 ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
+source $HOME/.zshrc
+
 # Update Homebrew recipes
 brew update
 
@@ -33,7 +35,7 @@ brew bundle --file $HOME/.dotfiles/Brewfile
 pecl install imagick redis
 
 # Install global Composer packages
-/opt/homebrew/bin/composer global require laravel/installer laravel/valet beyondcode/expose
+composer global require laravel/installer laravel/valet beyondcode/expose
 
 # Install Laravel Valet
 $HOME/.composer/vendor/bin/valet install
