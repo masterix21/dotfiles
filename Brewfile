@@ -63,6 +63,9 @@ cask 'adobe-creative-cloud'
 cask 'whatsapp'
 cask 'telegram'
 cask 'termius'
+cask 'teamviewer'
+cask 'anydesk'
+cask 'github'
 
 # Quicklook
 cask 'qlcolorcode'
