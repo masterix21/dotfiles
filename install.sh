@@ -7,12 +7,19 @@ if test ! $(which omz); then
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
 fi
 
+if [[ "$(/usr/bin/uname -m)" == "arm64" ]]
+then
+  HOMEBREW_PATH="/opt/homebrew"
+else
+  HOMEBREW_PATH="/usr/local"
+fi
+
 # Check for Homebrew and install if we don't have it
 if test ! $(which brew); then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  echo 'eval "$('$HOMEBREW_PATH'/bin/brew shellenv)"' >> $HOME/.zprofile
+  eval "$($HOMEBREW_PATH/bin/brew shellenv)"
 fi
 
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
@@ -22,14 +29,14 @@ ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 source $HOME/.zshrc
 
 # Update Homebrew recipes
-brew update
+$HOMEBREW_PATH/bin/brew update
 
 # Install Rosetta
 sudo softwareupdate --install-rosetta
 
 # Install all the dependencies with bundle (See Brewfile)
-brew tap homebrew/bundle
-brew bundle --file $HOME/.dotfiles/Brewfile
+$HOMEBREW_PATH/bin/brew tap homebrew/bundle
+$HOMEBREW_PATH/bin/brew bundle --file $HOME/.dotfiles/Brewfile
 
 # Install PHP extensions with PECL
 pecl install imagick redis
