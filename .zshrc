@@ -35,11 +35,18 @@ export OPEN_ON_MAKE_EDITOR="pstorm"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+if [[ "$(/usr/bin/uname -m)" == "arm64" ]]
+then
+  HOMEBREW_PATH="/opt/homebrew"
+else
+  HOMEBREW_PATH="/usr/local"
+fi
+
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOMEBREW_PATH/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 source "$DOTFILES/.aliases"

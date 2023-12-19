@@ -31,8 +31,11 @@ source $HOME/.zshrc
 # Update Homebrew recipes
 $HOMEBREW_PATH/bin/brew update
 
-# Install Rosetta
-sudo softwareupdate --install-rosetta
+if [[ "$(/usr/bin/uname -m)" == "arm64" ]]
+then
+  # Install Rosetta
+  sudo softwareupdate --install-rosetta
+fi
 
 # Install all the dependencies with bundle (See Brewfile)
 $HOMEBREW_PATH/bin/brew tap homebrew/bundle
