@@ -5,6 +5,7 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 tap 'nicoverbruggen/homebrew-cask'
 tap 'oven-sh/bun'
+tap 'dart-lang/dart'
 
 # Install Binaries
 brew 'bash' # Latest Bash version
@@ -32,6 +33,7 @@ brew 'redis'
 brew 'yarn'
 brew 'bun'
 brew 'cocoapods'
+brew 'dart'
 
 # Apps
 cask 'alfred'
