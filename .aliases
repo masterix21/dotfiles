@@ -28,6 +28,8 @@ alias ungit="git rm -r --cached"
 alias android-screenshot='adb exec-out screencap -p > screen-$(date +%Y%m%d%H%M%S).png'
 alias flutter-build-ios="dart run build_runner build --delete-conflicting-outputs && version=\$(grep 'version:' ./pubspec.yaml | awk '{print \$2}'); flutter build ipa --obfuscate --split-debug-info=\"debug-info/ios/\$version\""
 alias flutter-build-android="dart run build_runner build --delete-conflicting-outputs && version=\$(grep 'version:' ./pubspec.yaml | awk '{print \$2}'); flutter build appbundle --obfuscate --split-debug-info=\"debug-info/android/\$version\""
+alias flutter-crash-ios="./ios/Pods/FirebaseCrashlytics/upload-symbols -gsp ./ios/Runner/GoogleService-Info.plist -p ios ./ios/build/Runner.xcarchive/dSYMs"
+alias flutter-crash-android="androidAppId=\$(grep mobilesdk_app_id ./android/app/google-services.json | tail -n1 | sed 's/.*\\\"mobilesdk_app_id\\\": \"\(.*\)\",/\1/'); firebase crashlytics:symbols:upload --app=$androidAppId debug-info/android/$version"
 
 #-----------------------------------------------------------------------------------#
 #	Hosts and networks
