@@ -48,6 +48,7 @@ fi
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOMEBREW_PATH/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.pub-cache/bin:$PATH"
 
 source "$DOTFILES/.aliases"
 source "$DOTFILES/.functions"

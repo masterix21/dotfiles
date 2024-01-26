@@ -254,8 +254,8 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 ###############################################################################
 
 # Use the system-native print preview dialog
-defaults write com.google.Chrome DisablePrintPreview -bool true
-defaults write com.google.Chrome.canary DisablePrintPreview -bool true
+defaults write com.google.Chrome DisablePrintPreview -bool false
+defaults write com.google.Chrome.canary DisablePrintPreview -bool false
 
 ###############################################################################
 # Function keys behavior                                                      #
