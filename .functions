@@ -1,4 +1,19 @@
 #-----------------------------------------------------------------------------------#
+#       Flutter
+#-----------------------------------------------------------------------------------#
+
+flutterCrashAndroid() {
+    version=$(awk '/^version: /{print $2}' ./pubspec.yaml)
+    if [ -z "$version" ]; then
+        echo "Error: Version is blank."
+        return 1
+    fi
+
+    androidAppId=$(grep mobilesdk_app_id ./android/app/google-services.json | tail -n1 | sed 's/.*\"mobilesdk_app_id\": \"\(.*\)\",/\1/')
+    firebase crashlytics:symbols:upload --app="$androidAppId" debug-info/android/$version
+}
+
+#-----------------------------------------------------------------------------------#
 #       MySQL and databases
 #-----------------------------------------------------------------------------------#
 
