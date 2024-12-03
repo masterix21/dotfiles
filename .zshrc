@@ -49,6 +49,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOMEBREW_PATH/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 
 source "$DOTFILES/.aliases"
 source "$DOTFILES/.functions"
@@ -69,3 +71,11 @@ export HERD_PHP_83_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/co
 
 # Herd injected PHP binary.
 export PATH="/Users/luca/Library/Application Support/Herd/bin/":$PATH
+
+# NodeJS NVM
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+# Compilers
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
