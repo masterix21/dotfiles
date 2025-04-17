@@ -1,4 +1,21 @@
 #-----------------------------------------------------------------------------------#
+#       Git
+#-----------------------------------------------------------------------------------#
+bigbang() {
+  if [[ -z "$1" ]]; then
+    echo "Errore: URL del repository obbligatorio. Uso: bigbang https://url-del-repository/"
+    return 1
+  fi
+
+  git init
+  git add . 
+  git commit -m '💥 Big Bang'
+  git remote add origin "$1" 
+  git branch -M main
+  git push -u origin main
+}
+
+#-----------------------------------------------------------------------------------#
 #       Flutter
 #-----------------------------------------------------------------------------------#
 
