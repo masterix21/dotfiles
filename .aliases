@@ -9,6 +9,7 @@ alias a="php artisan"
 alias vapor="php $HOME/.composer/vendor/bin/vapor"
 alias sail="./vendor/bin/sail"
 alias pint="./vendor/bin/pint"
+alias pest-coverage="herd coverage ./vendor/bin/pest --coverage"
 
 #-----------------------------------------------------------------------------------#
 #	Editor
