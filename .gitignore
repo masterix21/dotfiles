@@ -1,2 +1,5 @@
 plugins/*
 .DS_Store
+.claude/projects/*
+.claude/ide/*.lock
+
