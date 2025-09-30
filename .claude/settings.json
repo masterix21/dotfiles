@@ -1,0 +1,14 @@
+{
+  "model": "opus",
+  "mcpServers": {
+    "dart-flutter": {
+      "command": "dart",
+      "args": [
+        "mcp-server"
+      ]
+    }
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1754041358796
+  }
+}
