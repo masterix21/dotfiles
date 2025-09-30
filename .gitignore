@@ -5,3 +5,4 @@ plugins/*
 .claude/todos
 .claude/history.jsonl
 .claude/statsig
+.claude/file-history
