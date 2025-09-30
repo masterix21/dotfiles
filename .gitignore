@@ -4,3 +4,4 @@ plugins/*
 .claude/ide/*.lock
 .claude/todos
 .claude/history.jsonl
+.claude/statsig
