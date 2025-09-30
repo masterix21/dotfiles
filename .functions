@@ -62,3 +62,25 @@ mydrop() {
 mfdread() {
     xxd "$1" | awk 'NR%4==0 {print "\033[0;31m" $0 "\033[0m"; next} {print}'
 }
+
+#-----------------------------------------------------------------------------------#
+#	AI
+#-----------------------------------------------------------------------------------#
+init-claude-memory() {
+  echo -n "Nome del progetto: "
+  read PROGETTO
+  mkdir -p .claude/commands
+  echo "Usa il server MCP \"Memory-Keeper\" e salva la conversazione corrente nella categoria \"$PROGETTO\" con il titolo \"{{param1}}\"." > .claude/commands/salva.md
+  echo "Usa il server MCP \"Memory-Keeper\" e lista solo i titoli delle funzionalità salvate nella categoria \"$PROGETTO\", in elenco puntato:" > .claude/commands/memoria.md
+  echo "Usa il server MCP \"Memory-Keeper\" e cancella dalla categoria \"$PROGETTO\" la funzionalità \"{{param1}}\"." > .claude/commands/dimentica.md
+  echo "Usa il server MCP \"Memory-Keeper\" e appendi alla funzionalità \"{{param1}}\" nella categoria \"$PROGETTO\" la conversazione corrente." > .claude/commands/continua.md
+  echo "Comandi Claude creati per il progetto $PROGETTO"
+}
+
+cdx() {
+  if [[ "$1" == "update" ]]; then
+    npm install -g @openai/codex@latest
+  else
+    codex --model 'gpt-5-codex' --full-auto -c model_reasoning_summary_format=experimental --search "$@"
+  fi
+}
