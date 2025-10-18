@@ -6,3 +6,5 @@ plugins/*
 .claude/history.jsonl
 .claude/statsig
 .claude/file-history
+/.claude/debug
+/.claude/shell-snapshots

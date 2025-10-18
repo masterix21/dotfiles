@@ -1,4 +1,12 @@
 {
+  "enabledPlugins": {
+    "git-workflow@claude-code-templates": true,
+    "security-pro@claude-code-templates": true,
+    "ai-ml-toolkit@claude-code-templates": true,
+    "documentation-generator@claude-code-templates": true,
+    "performance-optimizer@claude-code-templates": true,
+    "project-management-suite@claude-code-templates": true
+  },
   "mcpServers": {
     "dart-flutter": {
       "command": "dart",
