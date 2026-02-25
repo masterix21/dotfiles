@@ -1,7 +1,7 @@
 [user]
     name = Luca
-    email = # inserire la tua email
-    signingkey = # inserire la chiave SSH da 1Password
+	email = masterix21@gmail.com
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE6o+m+mRhkX5kZxRzcs/f75usMktoTAPygdvTaSjpe/
 
 [gpg]
     format = ssh
@@ -39,3 +39,8 @@
 
 [init]
     defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
