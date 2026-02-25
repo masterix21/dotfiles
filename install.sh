@@ -76,7 +76,9 @@ $HOMEBREW_PATH/bin/brew bundle --file $HOME/.dotfiles/Brewfile
 composer global require laravel/installer laravel/valet laravel/pint laravel/envoy spatie/phpunit-watcher beyondcode/expose
 
 # Install Laravel Valet
-$HOME/.composer/vendor/bin/valet install
+if ! $HOME/.composer/vendor/bin/valet --version &> /dev/null; then
+    $HOME/.composer/vendor/bin/valet install
+fi
 
 # Create a Sites directories
 mkdir -p $HOME/Dev/Sites $HOME/Dev/Packages $HOME/Dev/Forks $HOME/Dev/Mobile
