@@ -79,11 +79,7 @@ composer global require laravel/installer laravel/valet laravel/pint laravel/env
 $HOME/.composer/vendor/bin/valet install
 
 # Create a Sites directories
-mkdir $HOME/Dev
-mkdir $HOME/Dev/Sites
-mkdir $HOME/Dev/Packages
-mkdir $HOME/Dev/Forks
-mkdir $HOME/Dev/Mobile
+mkdir -p $HOME/Dev/Sites $HOME/Dev/Packages $HOME/Dev/Forks $HOME/Dev/Mobile
 
 # Install ZSH autosuggestion plugin
 git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.dotfiles/plugins/zsh-autosuggestions
