@@ -1,8 +1,59 @@
-plugins/*
+# Mac OS X hidden files
 .DS_Store
-.claude/projects/*
-.claude/ide/*.lock
-.claude/todos
-.claude/history.jsonl
-.claude/statsig
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Vim swap files
+.*.sw?
+
+# PhpStorm
+.idea
+
+# vs code
+.vscode
+
+# Sublime Text
+*.sublime-project
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+.phpunit-watcher-cache.php
+.phpunit.result.cache
+
+# Playwright
+.playwright
+.playwright-mcp
+
+# Environment files
+.env
+
+# Claude
+.claude/settings.local.json
+.claude/backups
+.claude/cache
+.claude/chrome
+.claude/debug
+.claude/downloads
 .claude/file-history
+.claude/history.jsonl
+.claude/ide
+.claude/paste-cache
+.claude/plans
+.claude/plugins
+.claude/projects
+.claude/shell-snapshots
+.claude/stats-cache.json
+.claude/statsig
+.claude/tasks
+.claude/teams
+.claude/telemetry
+.claude/todos
+
+# Plugins
+plugins
