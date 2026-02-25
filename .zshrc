@@ -66,7 +66,7 @@ export XDEBUG_CONFIG="idekey=PHPSTORM"
 # Compilers
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # Starship prompt
 eval "$(starship init zsh)"
