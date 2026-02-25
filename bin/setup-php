@@ -36,42 +36,46 @@ if [[ "$1" == "--disable-xdebug" ]]; then
     DISABLE_XDEBUG=true
 fi
 
-# PECL extensions
 pecl_install() {
-    local ext="$1"
-    if pecl list | grep -qi "^$ext"; then
-        success "PECL $ext: already installed"
+    local pecl_bin="$1"
+    local ext="$2"
+    if "$pecl_bin" list 2>/dev/null | grep -qi "^$ext"; then
+        success "  $ext: already installed"
     else
-        pecl install "$ext" 2>/dev/null && success "PECL $ext: installed" || warn "PECL $ext: install failed"
+        "$pecl_bin" install "$ext" 2>/dev/null && success "  $ext: installed" || warn "  $ext: install failed"
     fi
 }
-
-step "Installing PECL extensions..."
-pecl_install imagick
-pecl_install memcached
-pecl_install xdebug
-pecl_install redis
-success "PECL extensions processed"
-
-# xdebug config for each PHP version
-step "Configuring xdebug for all PHP versions..."
 
 for version_dir in "$PHP_BASE"/*/; do
     version=$(basename "$version_dir")
     CONF_DIR="$PHP_BASE/$version/conf.d"
     INI_FILE="$CONF_DIR/ext-xdebug.ini"
+    PECL_BIN="$HOMEBREW_PREFIX/opt/php@$version/bin/pecl"
 
     if [ ! -d "$CONF_DIR" ]; then
         warn "conf.d not found for PHP $version, skipping"
         continue
     fi
 
+    step "PHP $version"
+
+    # PECL extensions
+    if [ -f "$PECL_BIN" ]; then
+        pecl_install "$PECL_BIN" imagick
+        pecl_install "$PECL_BIN" memcached
+        pecl_install "$PECL_BIN" xdebug
+        pecl_install "$PECL_BIN" redis
+    else
+        warn "pecl not found for PHP $version, skipping PECL installs"
+    fi
+
+    # xdebug config
     if [ "$DISABLE_XDEBUG" = true ]; then
         if [ -f "$INI_FILE" ]; then
             rm "$INI_FILE"
-            success "PHP $version: xdebug disabled"
+            success "  xdebug: disabled"
         else
-            warn "PHP $version: nothing to disable"
+            warn "  xdebug: nothing to disable"
         fi
         continue
     fi
@@ -86,7 +90,7 @@ xdebug.idekey = PHPSTORM
 xdebug.log_level = 0
 EOF
 
-    success "PHP $version: xdebug configured"
+    success "  xdebug: configured"
 done
 
 # Restart Valet
