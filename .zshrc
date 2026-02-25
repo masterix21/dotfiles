@@ -56,6 +56,9 @@ export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 source "$DOTFILES/.aliases"
 source "$DOTFILES/.functions"
 
+# xdebug
+export XDEBUG_CONFIG="idekey=PHPSTORM"
+
 # bun completions
 [ -s "/Users/luca/.bun/_bun" ] && source "/Users/luca/.bun/_bun"
 
