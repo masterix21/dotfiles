@@ -45,6 +45,7 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOMEBREW_PATH/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"

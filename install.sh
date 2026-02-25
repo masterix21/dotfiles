@@ -99,6 +99,14 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.dotfiles/plugi
 # Symlink the Mackup config file to the home directory
 ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
 
+# Symlink bin scripts
+mkdir -p $HOME/bin
+ln -sf $HOME/.dotfiles/bin/configure-xdebug $HOME/bin/configure-xdebug
+success "bin scripts symlinked"
+
+# Configure xdebug for all PHP versions
+$HOME/bin/configure-xdebug || warn "xdebug configuration failed"
+
 # Symlink gitconfig and global gitignore
 ln -sf $HOME/.dotfiles/home/.gitconfig $HOME/.gitconfig
 ln -sf $HOME/.dotfiles/home/.global-gitignore $HOME/.global-gitignore
