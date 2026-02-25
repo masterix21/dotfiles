@@ -39,7 +39,9 @@ fi
 pecl_install() {
     local pecl_bin="$1"
     local ext="$2"
-    if "$pecl_bin" list 2>/dev/null | grep -qi "^$ext"; then
+    local php_bin
+    php_bin="$(dirname "$pecl_bin")/php"
+    if "$php_bin" -m 2>/dev/null | grep -qi "^${ext}$"; then
         success "  $ext: already installed"
     else
         "$pecl_bin" install "$ext" 2>/dev/null && success "  $ext: installed" || warn "  $ext: install failed"
