@@ -81,7 +81,10 @@ pecl install xdebug 2>/dev/null || warn "xdebug already installed or failed"
 pecl install redis 2>/dev/null || warn "redis already installed or failed"
 
 # Install global Composer packages
-composer global require laravel/installer beyondcode/expose
+composer global require laravel/installer laravel/valet beyondcode/expose
+
+# Install Laravel Valet
+$HOME/.composer/vendor/bin/valet install
 
 # Create a Sites directories
 mkdir $HOME/Dev
