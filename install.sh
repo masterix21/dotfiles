@@ -82,10 +82,12 @@ $HOME/.composer/vendor/bin/valet install
 mkdir -p $HOME/Dev/Sites $HOME/Dev/Packages $HOME/Dev/Forks $HOME/Dev/Mobile
 
 # Install ZSH autosuggestion plugin
-git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.dotfiles/plugins/zsh-autosuggestions
+if [ ! -d "$HOME/.dotfiles/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.dotfiles/plugins/zsh-autosuggestions
+fi
 
 # Symlink the Mackup config file to the home directory
-ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
+ln -sf $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
 
 # Symlink bin scripts
 mkdir -p $HOME/bin
