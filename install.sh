@@ -74,12 +74,6 @@ fi
 $HOMEBREW_PATH/bin/brew tap homebrew/bundle
 $HOMEBREW_PATH/bin/brew bundle --file $HOME/.dotfiles/Brewfile
 
-# Install PHP extensions with PECL
-pecl install imagick 2>/dev/null || warn "imagick already installed or failed"
-pecl install memcached 2>/dev/null || warn "memcached already installed or failed"
-pecl install xdebug 2>/dev/null || warn "xdebug already installed or failed"
-pecl install redis 2>/dev/null || warn "redis already installed or failed"
-
 # Install global Composer packages
 composer global require laravel/installer laravel/valet laravel/pint laravel/envoy spatie/phpunit-watcher beyondcode/expose
 
@@ -101,11 +95,11 @@ ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
 
 # Symlink bin scripts
 mkdir -p $HOME/bin
-ln -sf $HOME/.dotfiles/bin/configure-xdebug $HOME/bin/configure-xdebug
+ln -sf $HOME/.dotfiles/bin/setup-php $HOME/bin/setup-php
 success "bin scripts symlinked"
 
-# Configure xdebug for all PHP versions
-$HOME/bin/configure-xdebug || warn "xdebug configuration failed"
+# Install PECL extensions and configure xdebug for all PHP versions
+$HOME/bin/setup-php || warn "PHP setup failed"
 
 # Symlink gitconfig and global gitignore
 ln -sf $HOME/.dotfiles/home/.gitconfig $HOME/.gitconfig
