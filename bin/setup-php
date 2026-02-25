@@ -44,6 +44,7 @@ pecl_install() {
     if "$php_bin" -m 2>/dev/null | grep -qi "^${ext}$"; then
         success "  $ext: already installed"
     else
+        sudo rm -rf "/private/tmp/pear/temp/$ext" 2>/dev/null || true
         "$pecl_bin" install "$ext" 2>/dev/null && success "  $ext: installed" || warn "  $ext: install failed"
     fi
 }
