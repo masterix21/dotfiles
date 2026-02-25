@@ -109,6 +109,7 @@ success "Starship config symlinked"
 
 # Setup fnm (Node version manager)
 if command -v fnm &> /dev/null; then
+    eval "$(fnm env --shell bash)"
     fnm install --lts || warn "fnm LTS install failed"
     fnm use lts-latest || warn "fnm use lts-latest failed"
     success "fnm configured"
