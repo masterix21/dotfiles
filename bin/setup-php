@@ -37,11 +37,20 @@ if [[ "$1" == "--disable-xdebug" ]]; then
 fi
 
 # PECL extensions
+pecl_install() {
+    local ext="$1"
+    if pecl list | grep -qi "^$ext"; then
+        success "PECL $ext: already installed"
+    else
+        pecl install "$ext" 2>/dev/null && success "PECL $ext: installed" || warn "PECL $ext: install failed"
+    fi
+}
+
 step "Installing PECL extensions..."
-pecl install imagick 2>/dev/null || warn "imagick already installed or failed"
-pecl install memcached 2>/dev/null || warn "memcached already installed or failed"
-pecl install xdebug 2>/dev/null || warn "xdebug already installed or failed"
-pecl install redis 2>/dev/null || warn "redis already installed or failed"
+pecl_install imagick
+pecl_install memcached
+pecl_install xdebug
+pecl_install redis
 success "PECL extensions processed"
 
 # xdebug config for each PHP version
