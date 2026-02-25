@@ -247,13 +247,11 @@ defaults write com.apple.commerce AutoUpdate -bool true
 # Safari & WebKit                                                             #
 ###############################################################################
 
-# Enable Safari’s debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
-# Enable the Develop menu and the Web Inspector in Safari
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+# Safari is sandboxed on macOS Ventura+: these require Full Disk Access for Terminal.
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true 2>/dev/null || true
+defaults write com.apple.Safari IncludeDevelopMenu -bool true 2>/dev/null || true
+defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true 2>/dev/null || true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true 2>/dev/null || true
 
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
