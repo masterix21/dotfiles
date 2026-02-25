@@ -81,10 +81,7 @@ pecl install xdebug 2>/dev/null || warn "xdebug already installed or failed"
 pecl install redis 2>/dev/null || warn "redis already installed or failed"
 
 # Install global Composer packages
-composer global require laravel/installer laravel/valet beyondcode/expose
-
-# Install Laravel Valet
-$HOME/.composer/vendor/bin/valet install
+composer global require laravel/installer beyondcode/expose
 
 # Create a Sites directories
 mkdir $HOME/Dev
@@ -98,6 +95,29 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.dotfiles/plugi
 
 # Symlink the Mackup config file to the home directory
 ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
+
+# Symlink gitconfig and global gitignore
+ln -sf $HOME/.dotfiles/home/.gitconfig $HOME/.gitconfig
+ln -sf $HOME/.dotfiles/home/.global-gitignore $HOME/.global-gitignore
+success "Gitconfig and global gitignore symlinked"
+
+# Symlink Starship config
+mkdir -p $HOME/.config
+ln -sf $HOME/.dotfiles/config/starship.toml $HOME/.config/starship.toml
+success "Starship config symlinked"
+
+# Setup fnm (Node version manager)
+if command -v fnm &> /dev/null; then
+    fnm install --lts || warn "fnm LTS install failed"
+    fnm use lts-latest || warn "fnm use lts-latest failed"
+    success "fnm configured"
+fi
+
+# Setup fzf keybindings
+if command -v fzf &> /dev/null; then
+    $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc || warn "fzf install failed"
+    success "fzf keybindings installed"
+fi
 
 # Set macOS preferences
 # We will run this last because this will reload the shell

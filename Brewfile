@@ -22,6 +22,21 @@ brew 'zsh'
 brew 'zsh-completions'
 brew 'ffmpeg'
 
+# Modern CLI tools
+brew 'eza'           # ls moderno
+brew 'ripgrep'       # grep veloce
+brew 'fd'            # find semplice
+brew 'zoxide'        # cd smart
+brew 'fnm'           # node version manager
+brew 'git-delta'     # git diff visivi
+brew 'bottom'        # htop moderno
+brew 'fzf'           # fuzzy finder
+brew 'jq'            # JSON processor
+brew 'yq'            # YAML processor
+brew 'direnv'        # env per directory
+brew 'ncdu'          # disk usage interattivo
+brew 'starship'      # prompt cross-shell
+
 # Development
 brew 'imagemagick'
 brew 'php@8.3'
@@ -41,7 +56,6 @@ cask '1password'
 cask 'alfred'
 cask 'bartender'
 cask 'google-chrome'
-cask 'grammarly-desktop'
 cask 'helo'
 cask 'imageoptim'
 cask 'insomnia'
@@ -79,3 +93,4 @@ cask 'qlstephen'
 cask 'font-fira-code'
 cask 'font-lato'
 cask 'font-jetbrains-mono'
+cask 'font-meslo-lg-nerd-font'

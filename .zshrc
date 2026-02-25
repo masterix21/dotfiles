@@ -4,7 +4,7 @@ export DOTFILES=$HOME/.dotfiles
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 CASE_SENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
@@ -71,11 +71,6 @@ export HERD_PHP_83_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/co
 # Herd injected PHP binary.
 export PATH="/Users/luca/Library/Application Support/Herd/bin/":$PATH
 
-# NodeJS NVM
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
 # Compilers
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
@@ -92,3 +87,21 @@ export HERD_PHP_84_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/co
 export HERD_PHP_74_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/config/php/74/"
 
 . "$HOME/.local/bin/env"
+
+# Starship prompt
+eval "$(starship init zsh)"
+
+# Zoxide (cd smart, deve stare DOPO starship)
+eval "$(zoxide init zsh)"
+
+# fnm (Node version manager)
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# fzf keybindings
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Load local overrides if present
+[ -f ~/.dotfiles-custom ] && source ~/.dotfiles-custom

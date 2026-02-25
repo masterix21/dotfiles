@@ -84,3 +84,57 @@ cdx() {
     codex --model 'gpt-5-codex' --full-auto -c model_reasoning_summary_format=experimental --search "$@"
   fi
 }
+
+#-----------------------------------------------------------------------------------#
+#	Directory utilities
+#-----------------------------------------------------------------------------------#
+mkd() {
+    mkdir -p "$@" && cd "$_"
+}
+
+#-----------------------------------------------------------------------------------#
+#	Git utilities
+#-----------------------------------------------------------------------------------#
+git-prune-local() {
+    git fetch --prune
+    git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
+}
+
+clone() {
+    gh repo clone "$1" && cd "$(basename "$1")"
+}
+
+#-----------------------------------------------------------------------------------#
+#	Laravel / Pest
+#-----------------------------------------------------------------------------------#
+p() {
+    if [ -f vendor/bin/pest ]; then
+        vendor/bin/pest "$@"
+    else
+        php artisan test "$@"
+    fi
+}
+
+pf() {
+    p --filter "$@"
+}
+
+scheduler() {
+    while true; do
+        php artisan schedule:run
+        sleep 60
+    done
+}
+
+#-----------------------------------------------------------------------------------#
+#	AI commit message
+#-----------------------------------------------------------------------------------#
+commit() {
+    local message
+    message=$(git diff --cached | claude -p "Write a concise git commit message for these changes. No markdown, plain text only, max 72 chars.")
+    git commit -m "$message"
+}
+
+claude-yolo() {
+    claude --dangerously-skip-permissions "$@"
+}
