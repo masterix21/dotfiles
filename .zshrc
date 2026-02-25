@@ -72,7 +72,7 @@ export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 eval "$(starship init zsh)"
 
 # Zoxide (cd smart, deve stare DOPO starship)
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 
 # fnm (Node version manager)
 eval "$(fnm env --use-on-cd --shell zsh)"
@@ -85,3 +85,23 @@ eval "$(direnv hook zsh)"
 
 # Load local overrides if present
 [ -f ~/.dotfiles-custom ] && source ~/.dotfiles-custom
+
+
+# Herd injected PHP binary.
+export PATH="/Users/luca/Library/Application Support/Herd/bin/":$PATH
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/config/php/84/"
+
+
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/config/php/83/"
+
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/config/php/82/"
+
+
+# Herd injected PHP 7.4 configuration.
+export HERD_PHP_74_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/config/php/74/"

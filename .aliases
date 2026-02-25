@@ -74,7 +74,6 @@ if command -v btm &> /dev/null; then
     alias htop="btm"
 fi
 
-alias cd="z"
 
 #-----------------------------------------------------------------------------------#
 #	Git shortcuts

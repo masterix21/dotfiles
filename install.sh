@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e  # Exit on error (but we use || true for optional steps)
 
@@ -59,7 +59,6 @@ fi
 rm -rf $HOME/.zshrc
 ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
-source $HOME/.zshrc
 
 # Update Homebrew recipes
 $HOMEBREW_PATH/bin/brew update
@@ -71,7 +70,6 @@ then
 fi
 
 # Install all the dependencies with bundle (See Brewfile)
-$HOMEBREW_PATH/bin/brew tap homebrew/bundle
 $HOMEBREW_PATH/bin/brew bundle --file $HOME/.dotfiles/Brewfile
 
 # Install global Composer packages
