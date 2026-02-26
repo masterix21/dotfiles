@@ -76,20 +76,20 @@ $HOMEBREW_PATH/bin/brew bundle --file $HOME/.dotfiles/Brewfile
 composer global require laravel/installer laravel/valet laravel/pint laravel/envoy spatie/phpunit-watcher beyondcode/expose
 
 # Install Laravel Valet
-$HOME/.composer/vendor/bin/valet install
+if ! $HOME/.composer/vendor/bin/valet --version &> /dev/null; then
+    $HOME/.composer/vendor/bin/valet install
+fi
 
 # Create a Sites directories
-mkdir $HOME/Dev
-mkdir $HOME/Dev/Sites
-mkdir $HOME/Dev/Packages
-mkdir $HOME/Dev/Forks
-mkdir $HOME/Dev/Mobile
+mkdir -p $HOME/Dev/Sites $HOME/Dev/Packages $HOME/Dev/Forks $HOME/Dev/Mobile
 
 # Install ZSH autosuggestion plugin
-git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.dotfiles/plugins/zsh-autosuggestions
+if [ ! -d "$HOME/.dotfiles/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.dotfiles/plugins/zsh-autosuggestions
+fi
 
 # Symlink the Mackup config file to the home directory
-ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
+ln -sf $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
 
 # Symlink bin scripts
 mkdir -p $HOME/bin
@@ -111,6 +111,7 @@ success "Starship config symlinked"
 
 # Setup fnm (Node version manager)
 if command -v fnm &> /dev/null; then
+    eval "$(fnm env --shell bash)"
     fnm install --lts || warn "fnm LTS install failed"
     fnm use lts-latest || warn "fnm use lts-latest failed"
     success "fnm configured"

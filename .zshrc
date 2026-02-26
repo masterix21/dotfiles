@@ -44,8 +44,9 @@ fi
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOMEBREW_PATH/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
@@ -66,7 +67,7 @@ export XDEBUG_CONFIG="idekey=PHPSTORM"
 # Compilers
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # Starship prompt
 eval "$(starship init zsh)"
@@ -105,3 +106,4 @@ export HERD_PHP_82_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/co
 
 # Herd injected PHP 7.4 configuration.
 export HERD_PHP_74_INI_SCAN_DIR="/Users/luca/Library/Application Support/Herd/config/php/74/"
+

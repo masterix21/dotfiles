@@ -73,6 +73,12 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
+# Disable Spotlight keyboard shortcuts (use Alfred instead)
+# Note: on macOS Ventura+ com.apple.symbolichotkeys is SIP-protected; suppress errors
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>" 2>/dev/null || true
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1572864</integer></array><key>type</key><string>standard</string></dict></dict>" 2>/dev/null || true
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u 2>/dev/null || true
+
 ###############################################################################
 # Energy saving                                                               #
 ###############################################################################
@@ -83,8 +89,8 @@ sudo pmset -a lidwake 1
 # Restart automatically on power loss
 sudo pmset -a autorestart 1
 
-# Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
+# Restart automatically if the computer freezes (deprecated on Ventura+)
+sudo systemsetup -setrestartfreeze on 2>/dev/null || true
 
 # Sleep the display after 15 minutes
 sudo pmset -a displaysleep 15
@@ -92,8 +98,8 @@ sudo pmset -a displaysleep 15
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
 
-# Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off > /dev/null
+# Never go into computer sleep mode (deprecated on Ventura+)
+sudo systemsetup -setcomputersleep Off 2>/dev/null || true
 
 # Hibernation mode
 # 0: Disable hibernation (speeds up entering sleep mode)
@@ -126,7 +132,7 @@ defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Finder: show all filename extensions
-defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true" && killall Finder
+defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true" && killall Finder 2>/dev/null || true
 
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
@@ -161,7 +167,7 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Use list view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
-defaults write com.apple.finder "FXPreferredViewStyle" -string "clmv" && killall Finder
+defaults write com.apple.finder "FXPreferredViewStyle" -string "clmv" && killall Finder 2>/dev/null || true
 
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
@@ -184,8 +190,8 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 ###############################################################################
 
 # Hide dock completly
-defaults write com.apple.dock autohide -bool true && killall Dock
-defaults write com.apple.dock "autohide-delay" -float "0.2" && killall Dock
+defaults write com.apple.dock autohide -bool true && killall Dock 2>/dev/null || true
+defaults write com.apple.dock "autohide-delay" -float "0.2" && killall Dock 2>/dev/null || true
 
 # Set the icon size of Dock items to 72 pixels
 defaults write com.apple.dock tilesize -int 72
@@ -241,13 +247,11 @@ defaults write com.apple.commerce AutoUpdate -bool true
 # Safari & WebKit                                                             #
 ###############################################################################
 
-# Enable Safari’s debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
-# Enable the Develop menu and the Web Inspector in Safari
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+# Safari is sandboxed on macOS Ventura+: these require Full Disk Access for Terminal.
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true 2>/dev/null || true
+defaults write com.apple.Safari IncludeDevelopMenu -bool true 2>/dev/null || true
+defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true 2>/dev/null || true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true 2>/dev/null || true
 
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
@@ -256,6 +260,21 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Use the system-native print preview dialog
 defaults write com.google.Chrome DisablePrintPreview -bool false
 defaults write com.google.Chrome.canary DisablePrintPreview -bool false
+
+###############################################################################
+# Spotlight                                                                   #
+###############################################################################
+
+# Disable Cmd+Space for Spotlight (free it for Raycast/Alfred)
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || \
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:enabled bool false" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+
+# Disable Cmd+Shift+Space for Spotlight Finder Window
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:65:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || \
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:65:enabled bool false" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+
+# Apply the changes
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
 ###############################################################################
 # Function keys behavior                                                      #
