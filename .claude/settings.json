@@ -3,7 +3,10 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "model": "sonnet",
-  "enabledPlugins": {},
+  "enabledPlugins": {
+    "databases@swe-marketplace": true,
+    "data@swe-marketplace": true
+  },
   "alwaysThinkingEnabled": true,
   "mcpServers": {
     "dart-flutter": {

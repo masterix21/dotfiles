@@ -6,5 +6,13 @@
     },
     "installLocation": "/Users/luca/.claude/plugins/marketplaces/claude-code-templates",
     "lastUpdated": "2026-02-25T11:40:23.488Z"
+  },
+  "swe-marketplace": {
+    "source": {
+      "source": "git",
+      "url": "https://github.com/andisab/swe-marketplace.git"
+    },
+    "installLocation": "/Users/luca/.claude/plugins/marketplaces/swe-marketplace",
+    "lastUpdated": "2026-02-26T11:44:48.165Z"
   }
 }
