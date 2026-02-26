@@ -75,6 +75,7 @@ cask 'whatsapp'
 cask 'telegram'
 cask 'termius'
 cask 'tailscale'
+cask 'winbox'
 cask 'github'
 
 # Quicklook
